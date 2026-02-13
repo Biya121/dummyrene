@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Son of Data - Magritte Hologram Mask</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍏</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #faf8f5;
+            --secondary-bg: #e8e4dd;
+            --accent: #2c3e50;
+            --gold: #c9a961;
+            --text-dark: #1a1a1a;
+            --text-light: #5a5a5a;
+            --border: #d4cfc4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            aspect-ratio: 1;
+            background: white;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--gold);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Magritte Inspiration Section */
+        .inspiration {
+            background: white;
+            padding: 6rem 5%;
+            margin: 6rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .inspiration-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .inspiration-item {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 3rem;
+            align-items: start;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .inspiration-item:last-child {
+            border-bottom: none;
+        }
+
+        .inspiration-image {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .inspiration-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .inspiration-content .artist {
+            font-size: 0.9rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .inspiration-content p {
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .inspiration-content .connection {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--primary-bg);
+            border-left: 3px solid var(--gold);
+        }
+
+        .inspiration-content .connection strong {
+            display: block;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* Scenarios Section */
+        .scenarios {
+            background: var(--secondary-bg);
+            padding: 6rem 5%;
+            margin: 6rem 0;
+        }
+
+        .scenarios h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .scenario-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .scenario-card {
+            background: white;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scenario-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .scenario-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
+
+        .scenario-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .scenario-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .scenario-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .scenario-card .features {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .scenario-card .features strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Products Section */
+        .products {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 5%;
+        }
+
+        .products h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .products-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            display: block;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+
+        .product-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .product-card .price {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .product-card .description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .product-card .features-list {
+            text-align: left;
+            margin-bottom: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-card .features-list li {
+            color: var(--text-light);
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            list-style: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .product-card .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .btn-gold:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: scale(0.9) translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 2px solid var(--gold);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 1rem;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .modal-nav:hover {
+            color: var(--gold);
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .modal-prev {
+            left: -60px;
+        }
+
+        .modal-next {
+            right: -60px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--accent);
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Decorative Elements */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 2rem auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .inspiration-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .inspiration-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .scenario-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .modal-nav {
+                font-size: 2rem;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo">THE SON OF DATA</div>
+            <ul class="nav-links">
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#inspiration">Inspiration</a></li>
+                <li><a href="#scenarios">Applications</a></li>
+                <li><a href="#products">Collection</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>The Son of Data</h1>
+        <p class="subtitle">MAGRITTE-INSPIRED HOLOGRAM PRIVACY MASK</p>
+        <p style="max-width: 800px; margin: 0 auto; color: var(--text-light); font-size: 1.05rem; line-height: 1.8;">
+            익명성의 예술을 입다. 안면 인식 감시 사회에서 당신의 프라이버시를 지켜주는 <br>
+            초현실주의 안티-서베이런스 장치입니다.
+        </p>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">Visual Gallery</h2>
+        <div class="divider"></div>
+        <p class="section-description">
+            르네 마그리트의 초현실주의 세계에서 영감을 받은 4가지 디자인. <br>
+            각 마스크는 예술 작품이자 당신의 프라이버시를 지키는 보호막입니다.
+        </p>
+        <div class="gallery-grid">
+            <div class="gallery-item" data-index="0">
+                <img src="photos/rose-mask.png" alt="Rose Hologram Mask">
+                <div class="gallery-caption">
+                    <h3>Rose Veil</h3>
+                    <p>우아함과 신비의 경계</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="1">
+                <img src="photos/cloud-walking.png" alt="Floating Apples">
+                <div class="gallery-caption">
+                    <h3>Floating Dreams</h3>
+                    <p>중력을 거스르는 상상</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="2">
+                <img src="photos/green-apple.png" alt="Green Apple Mask">
+                <div class="gallery-caption">
+                    <h3>The Original</h3>
+                    <p>가장 상징적인 익명성</p>
+                </div>
+            </div>
+            <div class="gallery-item" data-index="3">
+                <img src="photos/dove-mask.png" alt="Dove Hologram">
+                <div class="gallery-caption">
+                    <h3>Flight of Freedom</h3>
+                    <p>자유로운 영혼의 비상</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inspiration" class="inspiration">
+        <h2 class="section-title">Magritte의 유산</h2>
+        <div class="divider"></div>
+        <p class="section-description">
+            20세기 초현실주의의 거장 르네 마그리트. <br>
+            그의 작품이 담고 있는 '보이는 것과 보이지 않는 것'의 철학이 <br>
+            현대 디지털 프라이버시 기술과 만났습니다.
+        </p>
+        
+        <div class="inspiration-grid">
+            <div class="inspiration-item">
+                <img src="photos/green-apple.png" alt="The Son of Man" class="inspiration-image">
+                <div class="inspiration-content">
+                    <h3>The Son of Man</h3>
+                    <p class="artist">René Magritte, 1964</p>
+                    <p>
+                        중절모를 쓴 신사의 얼굴을 가리는 초록 사과. 마그리트의 가장 유명한 작품 중 하나입니다. 
+                        이 그림은 "우리가 보는 것은 항상 다른 무언가를 가리고 있다"는 철학적 질문을 던집니다. 
+                        겉으로 드러난 모습 뒤에 숨겨진 진실, 그리고 우리가 결코 온전히 볼 수 없는 타인의 본질에 대한 성찰입니다.
+                    </p>
+                    <div class="connection">
+                        <strong>The Son of Data와의 연결</strong>
+                        <p>
+                            디지털 감시 시대, 우리의 얼굴은 곧 데이터가 되었습니다. 
+                            마그리트의 사과처럼 홀로그램으로 얼굴을 가림으로써, 
+                            우리는 '보여지는 존재'에서 '스스로 선택하는 존재'로 전환합니다. 
+                            사과는 더 이상 그림 속 상징이 아닌, 당신의 익명성을 지키는 실제 장치가 됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inspiration-item">
+                <img src="photos/rose-mask.png" alt="Woman's Face covered by a Rose" class="inspiration-image">
+                <div class="inspiration-content">
+                    <h3>Untitled (Woman's Face covered by a Rose)</h3>
+                    <p class="artist">René Magritte</p>
+                    <p>
+                        여성의 얼굴을 가리는 아름다운 장미. 
+                        이 작품에서 마그리트는 아름다움 그 자체가 어떻게 진실을 가릴 수 있는지를 보여줍니다. 
+                        장미는 전통적으로 사랑과 열정의 상징이지만, 동시에 얼굴을 완전히 가리는 베일이 됩니다. 
+                        우아함과 신비로움이 공존하는 역설적 이미지입니다.
+                    </p>
+                    <div class="connection">
+                        <strong>The Son of Data와의 연결</strong>
+                        <p>
+                            Rose Veil 마스크는 프라이버시를 '숨기는 것'이 아닌 '우아하게 표현하는 것'으로 재정의합니다. 
+                            감시 카메라 앞에서도 당신은 여전히 아름답고 신비로울 수 있습니다. 
+                            익명성이 곧 예술이 되는 순간입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inspiration-item">
+                <img src="photos/dove-mask.png" alt="Man in a Bowler Hat" class="inspiration-image">
+                <div class="inspiration-content">
+                    <h3>Man in a Bowler Hat</h3>
+                    <p class="artist">René Magritte, 1964</p>
+                    <p>
+                        중절모를 쓴 남성의 얼굴을 가로지르는 흰 비둘기. 
+                        이 작품에서 비둘기는 단순히 얼굴을 가리는 것을 넘어 움직임과 자유를 상징합니다. 
+                        정지된 초상화 속에서 날아가는 새의 역동성은 "보이는 것의 한계"를 뛰어넘으려는 시도입니다.
+                    </p>
+                    <div class="connection">
+                        <strong>The Son of Data와의 연결</strong>
+                        <p>
+                            White Dove 마스크는 가장 역동적인 프라이버시 경험을 제공합니다. 
+                            날갯짓하는 비둘기 홀로그램은 당신이 감시에 얽매이지 않는 자유로운 존재임을 선언합니다. 
+                            디지털 세계에서도 우리는 여전히 날아오를 수 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inspiration-item">
+                <img src="photos/cloud-walking.png" alt="Young Loves" class="inspiration-image">
+                <div class="inspiration-content">
+                    <h3>The False Mirror</h3>
+                    <p class="artist">René Magritte, 1929</p>
+                    <p>
+                        하늘을 떠다니는 아름다운 구름들. 
+                        중력의 법칙을 거스르는 이 이미지는 마그리트의 초현실주의가 가장 순수하게 드러나는 작품입니다. 
+                        일상적인 요소가 비일상적인 방식으로 다가올 때, 우리는 현실에 대한 새로운 질문을 던지게 됩니다.
+                    </p>
+                    <div class="connection">
+                        <strong>The Son of Data와의 연결</strong>
+                        <p>
+                            Cloud Collection은 가장 초현실적인 프라이버시 경험을 선사합니다. 
+                            부유하는 구름은 당신의 얼굴을 꿈처럼 신비롭게 만듭니다. 
+                            현실의 감시망이 닿지 않는 초현실의 공간, 그곳에 당신이 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scenarios" class="scenarios">
+        <h2>기능 쇼케이스</h2>
+        <div class="scenario-grid">
+            <div class="scenario-card">
+                <div class="scenario-number">01</div>
+                <h3>안티-서베이런스</h3>
+                <p>안면 인식 감시 사회에서 개인의 프라이버시를 지켜주는 장치입니다. 
+                양자 중첩 효과를 이용해 기계가 사람의 얼굴을 인식할 수 없도록 합니다.</p>
+                <div class="features">
+                    <strong>핵심 기능:</strong>
+                    <p>안면인식 차단, 얼굴 가림 면적 조절</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-number">02</div>
+                <h3>메타버스 오피스</h3>
+                <p>집중이 필요한 순간, 마스크를 활성화합니다. 
+                외부에는 예술적 익명성을, 내부에는 초집중 데이터 그리드 공간을 제공합니다.</p>
+                <div class="features">
+                    <strong>핵심 기능:</strong>
+                    <p>프라이버시 모드, 내부 데이터 뷰어</p>
+                </div>
+            </div>
+
+            <div class="scenario-card">
+                <div class="scenario-number">03</div>
+                <h3>익명 소셜 파티</h3>
+                <p>외모와 사회적 지위라는 선입견 없이 
+                오로지 목소리와 대화의 내용에만 집중합니다. 원하는 사람에게만 악수를 통해 얼굴 공개가 가능합니다.</p>
+                <div class="features">
+                    <strong>핵심 기능:</strong>
+                    <p>특수 접촉 시스템, 다양한 마그리트 상징물 옵션</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2>컬렉션</h2>
+        <p class="products-subtitle">당신의 스타일에 맞는 익명성을 선택하세요</p>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="photos/product-green-apple.jpg" 
+                     alt="Green Apple Mask" 
+                     class="product-image">
+                <h3>Green Apple</h3>
+                <p class="price">$2,499</p>
+                <p class="description">가장 상징적인 마그리트의 사과. 클래식한 익명성의 완성.</p>
+                <ul class="features-list">
+                    <li>양자 중첩 홀로그램</li>
+                    <li>AI 인식 차단 99.9%</li>
+                    <li>72시간 배터리</li>
+                    <li>자동 면적 조절</li>
+                </ul>
+                <a href="#" class="btn">Pre-Order</a>
+            </div>
+
+            <div class="product-card">
+                <img src="photos/product-rose-veil.jpg" 
+                     alt="Rose Veil Mask" 
+                     class="product-image">
+                <h3>Rose Veil</h3>
+                <p class="price">$2,799</p>
+                <p class="description">우아한 장미가 얼굴을 감싸는 로맨틱한 프라이버시.</p>
+                <ul class="features-list">
+                    <li>양자 중첩 홀로그램</li>
+                    <li>향기 디퓨저 내장</li>
+                    <li>감성 인식 색상 변화</li>
+                    <li>24시간 배터리</li>
+                </ul>
+                <a href="#" class="btn">Pre-Order</a>
+            </div>
+
+            <div class="product-card">
+                <img src="photos/product-white-dove.png" 
+                     alt="White Dove Mask" 
+                     class="product-image">
+                <h3>White Dove</h3>
+                <p class="price">$2,999</p>
+                <p class="description">역동적으로 움직이는 흰 비둘기. 자유로운 영혼을 위한 선택.</p>
+                <ul class="features-list">
+                    <li>모션 캡처 날갯짓</li>
+                    <li>양자 중첩 홀로그램</li>
+                    <li>소리 반응 애니메이션</li>
+                    <li>48시간 배터리</li>
+                </ul>
+                <a href="#" class="btn">Pre-Order</a>
+            </div>
+
+            <div class="product-card">
+                <img src="photos/product-cloud-collection.png" 
+                     alt="Cloud Collection Mask" 
+                     class="product-image">
+                <h3>Cloud Collection</h3>
+                <p class="price">$3,499</p>
+                <p class="description">부유하는 구름들. 가장 초현실적이고 꿈같은 프라이버시 경험.</p>
+                <ul class="features-list">
+                    <li>양자 중첩 다층 구름 홀로그램</li>
+                    <li>날씨 연동 변화</li>
+                    <li>무드 라이팅</li>
+                    <li>72시간 배터리</li>
+                </ul>
+                <a href="#" class="btn btn-gold">Limited Edition</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for image viewing -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <span class="modal-nav modal-prev" onclick="changeImage(-1)">‹</span>
+            <img id="modalImage" src="" alt="Gallery Image">
+            <span class="modal-nav modal-next" onclick="changeImage(1)">›</span>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 The Son of Data. Inspired by René Magritte's Surrealism.</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">Quantum Privacy Technology • Holographic Art • Anti-Surveillance Innovation</p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Gallery modal functionality
+        let currentImageIndex = 0;
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        // Image sources (photos 폴더만 사용)
+        const imageSources = [
+            'photos/rose-mask.png',
+            'photos/cloud-walking.png',
+            'photos/green-apple.png',
+            'photos/dove-mask.png'
+        ];
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openModal(index);
+            });
+        });
+
+        function openModal(index) {
+            currentImageIndex = index;
+            updateModalImage();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = imageSources.length - 1;
+            if (currentImageIndex >= imageSources.length) currentImageIndex = 0;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            modalImage.src = imageSources[currentImageIndex];
+        }
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') changeImage(-1);
+                if (e.key === 'ArrowRight') changeImage(1);
+            }
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scenario-card, .product-card, .inspiration-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
